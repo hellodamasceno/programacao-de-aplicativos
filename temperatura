@@ -1,5 +1,0 @@
-temperatura = float(input("digite a temperatura atual: ))
-
-if temperatura <= 80 :
-    print("PERIGO! Desligando servidor por superaquecimento")
-elif temperatura <=
