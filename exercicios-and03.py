@@ -4,5 +4,6 @@ esferas = float(input("digite sua quantidade de esferas: "))
 
 if nivel >= 20 and esferas >= 50 :
     print ("Habilidade Super Salto desbloqueada!")
-elif nivel < 20 and esferas <= 50 :
+    
+else :
     print ("Requisitos insuficientes para nova habilidades")    
