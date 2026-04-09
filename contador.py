@@ -1,5 +1,6 @@
 lista_nomes = ["Ana", "Juliana", "Alice", "Roberta"]
 
 
-for nomes in lista_nomes:
-    if nomes 
+for nome in lista_nomes:
+    if nome [0] == "A":
+        print(f"Nomes: {nome}") 
