@@ -1,22 +1,17 @@
-def esta_na_lista(lista, nome_buscar):
-    for item in lista:
-        if item == nome_buscar:
-            print("Encontrado")
-        else:
-            print("Não disponivél")    
-
-
-minha_lista = ["maçã", "banana", "uva", "pera", "laranja"]
-
-busca1 = "uva"
-resultado1 = esta_na_lista(minha_lista, busca1)
-print(f"Busca por '{busca1}': {resultado1}")
-
-
-busca2 = "melancia"
-resultado2 = esta_na_lista(minha_lista, busca2)
-print(f"Busca por '{busca2}': {resultado2}")
+minha_lista_fruta = ["maçã", "banana", "uva", "pera", "laranja"]
+minha_lista_ferramenta = ["martelo", "Parafuso", "Prego"]
 
 
 
-esta_na_lista("lista", "nome_buscar" )
+def esta_na_lista(nome, lista):
+    if nome in lista:
+        print("Encontrado")
+    else:
+        print("Não disponivél")    
+nome = input ("Digite o nome: ")
+lista = input ("Digite a lista: ")
+if lista == "frutas":
+    lista = minha_lista_fruta
+elif lista == "Ferramentas":
+    lista = minha_lista_ferramenta
+esta_na_lista(nome,lista)

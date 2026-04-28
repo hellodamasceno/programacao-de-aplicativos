@@ -1,5 +1,12 @@
 vida_atual = 100
-
+dano = int(input("Digite o dano inicial: "))
 def sofrer_dano(vida, dano):
-    return vida - dano
-print("O jogo iniciou, VIDA:100")
+    while vida > 0:
+        if dano > vida:
+            vida -= dano
+            print("Vida atual ", vida)
+        dano = input("Digite o novo dano: ")
+
+sofrer_dano(vida_atual,dano  )        
+
+
