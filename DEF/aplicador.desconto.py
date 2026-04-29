@@ -3,7 +3,7 @@ def aplicar_promocao(precos):
 
     for preco in precos:
         if preco>100.00:
-            preco_novo = preco * 0.85
+            preco_novo = preco * 0.15
             nova_lista.append(preco_novo)
         else:
             nova_lista.append(preco)   
