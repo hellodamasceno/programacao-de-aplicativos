@@ -21,11 +21,11 @@ def editar():
     editar_destino = input("Digite o destino que deseja alterar: ")
     novo_destino = input("Digite o novo destino: ")
 
-    with open("viagens.txt", 'r') as arquivo:
+    with open("Habitos.txt", 'r') as arquivo:
         linhas = arquivo.readlines()
 
     editar_destino = novo_destino + '\n'
-    with open("viagens.txt", 'w') as arquivo:
+    with open("Habitos.txt", 'w') as arquivo:
         arquivo.writelines(linhas)
         print("lugar atualizado atualizado! ")
 
@@ -47,5 +47,4 @@ while True:
     elif  opcao == '2': ler()
     elif opcao == '3': editar()
     elif opcao == '4': deletar()
-    else:
-        print("Saindo do programa! ")
+    else: break
