@@ -25,4 +25,9 @@ comando_inserir = (f'''
                     {idade_aluno}, '{cpf_aluno}')''')
 cursor.execute(comando_inserir)
 conexao.commit()
-conexao.close 
+
+cursor.execute("SELECT * FROM ESCOLA_DEMONSTRACAO")
+for aluno in cursor.fetchall():
+    print(aluno)
+
+conexao.close()
