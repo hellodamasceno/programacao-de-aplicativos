@@ -13,7 +13,7 @@ def criar_tabela():
     nome_escola = input("Digite o nome da escola pretendente: ")
 
     cursor.execute ('''
-                CREATE TABLE IF NOT EXISTS ESCOLA_DEMONSTRACAO
+                CREATE TABLE IF NOT EXISTS professores
                 (id INTEGER PRIMARY KEY AUTOINCREMENT,
                     nome TEXT NOT NULL,
                     telefone TEXT,
@@ -23,13 +23,13 @@ def criar_tabela():
                     nome_escola  TEXT )''')
 
     comando_inserir = (f'''
-                        INSERT INTO escola_demonstracao
+                        INSERT INTO professores
                         (nome, telefone, materia, idade, salario, nome_escola)
                         VALUES('{nome_professora}', '{tel_professor}', '{materia_professor}',
                         {idade}, '{salario}' , '{nome_escola}')''')
     cursor.execute(comando_inserir)
     conexao.commit()
-    cursor.execute("SELECT * FROM ESCOLA_DEMONSTRACAO")
+    cursor.execute("SELECT * FROM professores")
     for professora in cursor.fetchall():
         print(professora)
     conexao.close()
@@ -37,7 +37,7 @@ def criar_tabela():
 def listar():
     conexao = sqlite3.connect('escola_demonstracao.db')
     cursor = conexao.cursor()
-    cursor.execute("SELECT * FROM ESCOLA_DEMONSTRACAO")
+    cursor.execute("SELECT * FROM professores")
     for aluno in cursor.fetchall():
         print(aluno)
     conexao.close()        
@@ -50,11 +50,18 @@ def alterar():
     cursor = conexao.cursor()
     id_atual = int(input("Digite o ID que deseja alterar: ")) 
 
-    cursor.execute(f''' SELECT * FROM professora WHERE ID={id_atual}''')
+    cursor.execute(f''' SELECT * FROM professores WHERE ID={id_atual}''')
     professora= cursor.fetchone()
     if not professora:
-        print("aluno não encontrado")
-    conexao.close()      
+        print("professor não encontrado")
+    else:    
+        novo_nome = input("Novo nome: ")
+        novo_telefone = input("Novo telefone: ") 
+        cursor.execute(f'''UPDATE professores SET nome= '{novo_nome}', telefone='{novo_telefone}'
+                   WHERE id= {id_atual} ''')  
+    conexao.commit()
+    print("Professor alterado com sucesso!")
+    conexao.close()
 
 
 
