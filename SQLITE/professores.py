@@ -10,6 +10,7 @@ def criar_tabela():
     materia_professor = input("Digite a materia: ")
     idade = int(input("Digite a idade: "))
     salario = input("Digite o salário: ")
+    endereco_professor = input("Digite o endereço do professor: ")
     nome_escola = input("Digite o nome da escola pretendente: ")
 
     cursor.execute ('''
@@ -20,13 +21,14 @@ def criar_tabela():
                     materia TEXT,
                     idade INTEGER,
                     salario TEXT,
+                    endereco TEXT,
                     nome_escola  TEXT )''')
 
     comando_inserir = (f'''
                         INSERT INTO professores
-                        (nome, telefone, materia, idade, salario, nome_escola)
+                        (nome, telefone, materia, idade, salario,  endereco , nome_escola)
                         VALUES('{nome_professora}', '{tel_professor}', '{materia_professor}',
-                        {idade}, '{salario}' , '{nome_escola}')''')
+                        {idade}, '{salario}' , '{endereco_professor}', '{nome_escola}')''')
     cursor.execute(comando_inserir)
     conexao.commit()
     cursor.execute("SELECT * FROM professores")
@@ -57,7 +59,8 @@ def alterar():
     else:    
         novo_nome = input("Novo nome: ")
         novo_telefone = input("Novo telefone: ") 
-        cursor.execute(f'''UPDATE professores SET nome= '{novo_nome}', telefone='{novo_telefone}'
+        novo_endereco = input("Digite o novo endereço: ")
+        cursor.execute(f'''UPDATE professores SET nome= '{novo_nome}', telefone='{novo_telefone}', endereco = '{novo_endereco}'
                    WHERE id= {id_atual} ''')  
     conexao.commit()
     print("Professor alterado com sucesso!")
