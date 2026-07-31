@@ -11,4 +11,4 @@ def verificar_registros():
 
     conexao.close ()
 
-    #pq no primeiro fetchall ele ja le todas as linhas netao no segundo não vai ter mais nada para aparecer no terminal 
+    #pq no primeiro fetchall ele ja le todas as linhas entao no segundo não vai ter mais nada para aparecer no terminal 

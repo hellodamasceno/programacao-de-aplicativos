@@ -14,4 +14,4 @@ def cadastrar_escola_manual():
     except sqlite3.IntegrityError:
         print("AVISO: Esse ID já existe ")
     conexao.close() 
-#com essa estrutura o proframa aprende a lidar com os erros do usuario
+#com essa estrutura o programa aprende a lidar com os erros do usuario
