@@ -3,26 +3,32 @@ import sqlite3
 def criar_tabela():
     try:
         conexao = sqlite3.connect("hospital.db")
-        cursor = conexao.cursor
-        cursor.execute("PRAGMA foreing_keys = ON;")
+        cursor = conexao.cursor()
+        cursor.execute("PRAGMA foreign_keys = ON;")
         cursor.execute ('''CREATE TABLE IF NOT EXISTS cinemas 
-                        (id INTEGER PRIMARY KEY AUTOINCREMENT,
+                        (id_cinema INTEGER PRIMARY KEY AUTOINCREMENT,
                         nome TEXT,
-                        shopping TEXT,)''')
+                        shopping TEXT
+                        )''')
         cursor.execute ('''CREATE TABLE IF NOT EXISTS salas
                         (id_cinema INTEGER PRIMARY KEY AUTOINCREMENT,
                         numero TEXT,
                         capacidade INTEGER,
+                        FOREIGN KEY (id_cinema) REFERENCES cinemas(id)
                     )''')
+        conexao.commit()
     finally:
-        conexao.close()    
-def cadastrar(numero, capacidade):
+        conexao.close()   
+
+
+
+def cadastrar(numero, capacidade, id_cinema):
     try:
         conexao = sqlite3.connect("hospital.db")
-        cursor = conexao.cursor
-        cursor.execute("PRAGMA foreing_keys = ON;")
+        cursor = conexao.cursor()
+        cursor.execute("PRAGMA foreign_keys = ON;")
         cursor.execute('''INSERT INTO salas
-                       (id, numero_sala, capacidade) VALUES (?, ?, ?)''', (id, numero, capacidade))
+                       (numero_sala, capacidade, id_cinema) VALUES (?, ?, ?)''', (numero_sala, capacidade, id_cinema))
         conexao.commit()
         print(f"Sala{numero} cadastrada com sucesso! ")
     except sqlite3.IntegrityError:
@@ -33,8 +39,8 @@ def cadastrar(numero, capacidade):
 def listar():
     try:
         conexao = sqlite3.connect("hospital.db")
-        cursor = conexao.cursor
-        cursor.execute("PRAGMA foreing_keys = ON;")
+        cursor = conexao.cursor()
+        cursor.execute("PRAGMA foreign_keys = ON;")
         print("Lista das salas ")
         cursor.execute(''' SELECT id, numero_sala, capacidade, id_cinema FROM salas''')
         todas_salas = cursor.fetchall()
@@ -46,9 +52,24 @@ def listar():
     finally:
         conexao.close()     
 
+def menu():
+    while True:
+        print("-----Sistema de cinema-----")
+        print("1-CADASTRAR | 2-LISTAR | 3-SAIR")
+        opcao = int(input("Digite a opção: "))
+        if opcao == 1 :
+            print("----1 CADASTRO-----")
+            numero = int(input("Digite o numero da sala: "))
+            capacidade = int(input("Digite a capacidade da sala: "))
+            id_cinema = int(input("Digite o ID do cinema: "))
+            cadastrar(numero, capacidade, id_cinema)
 
-while True:
-    print("-----Sistema de cinema-----")
-    print("1-CADASTRAR | 2-LISTAR")
-    opcao = int(input("Digite a opção: "))
-    if opcao == "1"
+        elif opcao == 2:
+            print("----2 LISTA DE SALAS----")
+            listar()
+        elif opcao == 3:
+            print("Saindo do sistema...") 
+            break 
+
+criar_tabela()  
+menu()
