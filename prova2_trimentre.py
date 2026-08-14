@@ -28,7 +28,7 @@ def cadastar_rede( nome, franquia):
         cursor.execute('''INSERT INTO rede_oficina
                        ( nome, franquia) VALUES (?,? ) ''' , (nome, franquia))
         conexao.commit()
-        print(f" Rede {nome} cadastrada com a {franquia} com sucesso! ")
+        print(f" Rede {nome} cadastrada com a franquia  {franquia} com sucesso! ")
     except sqlite3.Error:
         print("Rede inexistente")
     finally:
@@ -178,11 +178,11 @@ def excluir_oficina():
 def menu():
     while True:
         print("Sistema oficina ")
-        print("1-Cadastar rede| 2-Cadastrar oficina| 3-Listar redes| 4-Listar oficina| 5-Excluir rede| 6-Excluir oficina| 7-Sair")
+        print("1-Cadastar rede| 2-Cadastrar oficina| 3-Listar redes| 4-Listar oficina| 5-Excluir rede| 6-Excluir oficina| 7-Atualizar rede| 8-Atualizar oficina| 9-Sair")
         opcao = input("Digite a opção: ")
         if opcao == "1" :
             print("Cadastrar rede")
-            nome_rede = input("Digite o nome da rede:")
+            nome_rede = input("Digite o nome da rede: ")
             franquia = input("Digite o nome da franquia: ")
             cadastar_rede(nome_rede, franquia)
         elif opcao == "2":
@@ -203,6 +203,12 @@ def menu():
             print("Excluir oficina")
             excluir_oficina()
         elif opcao == "7":
+            print("Atualizar rede")
+            atualizar_redes() 
+        elif opcao == "8":
+            print("Atualizar oficina")
+            atualizar_oficina()       
+        elif opcao == "9":
             print("Saindo do sistema...") 
             break       
 criar_tabela_redeoficina()
